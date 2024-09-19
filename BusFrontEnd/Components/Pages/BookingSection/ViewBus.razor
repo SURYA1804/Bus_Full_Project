@@ -1,0 +1,123 @@
+@page "/ViewBus"
+@using Details
+@using Table
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+<body style="background-color:rgb(97, 231, 162);">
+<center><h3 class = "head">Available Bus</h3></center>
+<table class="detail-table">
+<thead class="thead-dark">
+<tr>
+<th>Bus Id</th>
+<th>Bus Name</th>
+<th>Bus Type</th>
+<th>Bus Seat Count</th>
+<th>Seats</th>
+</tr>
+</thead>
+<tbody>
+      @foreach (var record in BusDetails.Buses)
+      {
+                  <tr>
+                  <td>@record.BusId</td>
+                  <td>@record.BusName</td>
+                  <td>@record.BusType</td>
+                  <td>@record.BusSeatCount</td>
+                  <td><button type="button" class="custom-btn" @onclick="() => ViewSeats(record.BusId,record.BusName)">View</button></td>
+                  </tr>
+      }
+</tbody>
+</table>
+<br><br>
+
+<button type="button" class="custom-btn" @onclick="Back">Back</button>
+</body>
+<style>
+.detail-table {
+  border-collapse: separate;
+  margin: auto auto; 
+  width: 60%; 
+  font-family: Arial, sans-serif; 
+  border-spacing: 0 8px; 
+}
+
+.detail-table tr { 
+  background-color: #e8f5e9; 
+  transition: background-color 0.3s ease; 
+}
+
+.detail-table tr:hover { 
+  background-color: #c8e6c9; 
+}
+
+.detail-table th,
+.detail-table td {
+  border: 1px solid #a5d6a7; 
+  padding: 20px; 
+  text-align: left; 
+  vertical-align: middle;
+}
+
+.detail-table th {
+  font-weight: bold;
+  background-color: #66bb6a; 
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 5px; 
+}
+
+.detail-table td {
+  color: #2e7d32; 
+  background-color: #ffffff;
+  border-radius: 5px; 
+  white-space: nowrap; 
+}
+
+.detail-table tr:nth-child(odd) td {
+  background-color: #f1f8e9;
+}
+
+.custom-btn {
+  background-color: #4CAF50;
+  color: white; 
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-btn:hover {
+  background-color: #3e8e41;
+}
+.head
+{
+background-color: #28a745; 
+color:#eef4f3;
+width: 95%;
+padding: 20px 20px;
+font-size: 25px;
+font-weight: bold;
+border-radius: 25px;
+text-align: center;
+}
+</style>
+
+
+@code
+{
+  private async Task Back()
+  {
+    NavigationManager.NavigateTo("/BookingSection");
+  }
+  private async Task ViewSeats(string BusId, string BusName)
+  {
+    DiscountDetails.SetDiscountDetails();
+    SeatDetails.GetSeats(BusId);
+    BookedSeatsDetails.SetBookedSeatsDetails();
+    BookingDetails.BusId = BusId;
+    BookingDetails.BusName = BusName;
+    NavigationManager.NavigateTo("/ViewSeats");
+  }
+}

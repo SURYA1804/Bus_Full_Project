@@ -1,0 +1,105 @@
+@page "/MainSection"
+@using Details
+@using Table
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<body style="background-color:rgb(97, 231, 162);">
+<center><h1 class = "head">Main Section</h1></center>
+    @if (CustomerDetails.customer.Name != null)
+    {
+                        <p class ="background">WELCOME @CustomerDetails.customer.Name.ToUpper() !!!</p>
+    }
+    else
+    {
+        NavigationManager.NavigateTo("/");
+    }
+<center>
+    <button type="button" class="btn custom-btn" @onclick="Details">View Your Details</button><br><br>
+    <button type="button" class="btn custom-btn" @onclick="Update">Update Your Details</button><br><br>
+    <button type="button" class="btn custom-btn" @onclick="Booking">Booking Section</button><br><br>
+    <button type="button" class="btn custom-btn" @onclick="BookingHistory">Booking History</button><br><br>
+    <button type="button" class="btn custom-btn" @onclick="Logout">Logout</button><br><br>
+</center>
+<hr>
+</body>
+<style>
+.custom-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: center;
+}
+
+.custom-btn:hover {
+    background-color: #218838;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.custom-btn:active {
+    background-color: #1e7e34;
+
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+}
+.background {
+  background-color: #28a745; 
+  color:#f7f9f7;
+  padding: 10px;
+  width: 300px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 15px;
+  text-align: center;
+  }
+.head
+{
+background-color: #28a745; 
+color:#eef4f3;
+width: 95%;
+padding: 20px 20px;
+font-size: 25px;
+font-weight: bold;
+border-radius: 25px;
+text-align: center;
+}
+</style>
+
+@code {
+
+    private async Task Details()
+    {
+        NavigationManager.NavigateTo("/Profile");
+    }
+    private async Task Update()
+    {
+        NavigationManager.NavigateTo("/UpdateProfile");
+    }
+    private async Task Booking()
+    {
+        RouteDetails.GetRouteDetails();
+        BoardingDetails.GetBoardingPoints();
+        DropPointDetails.GetDropPointDetails();
+        NavigationManager.NavigateTo("/BookingSection");
+    }
+    private async Task BookingHistory()
+    {
+        CustomerDetails.CustomerBookingRecords();
+        NavigationManager.NavigateTo("/BookingRecords");
+    }
+    private async Task Logout()
+    {
+        CustomerDetails.customer = new CustomerTable();
+        NavigationManager.NavigateTo("/", true);
+    }
+}
+
+

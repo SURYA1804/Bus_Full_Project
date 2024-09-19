@@ -1,0 +1,208 @@
+@page "/BookSeats"
+@using Details
+@using Table
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+<body style="background-color:rgb(97, 231, 162);">
+<center><h3 class = "head">Book Seats</h3></center>
+<table class="detail-table">
+<thead class="thead-dark">
+<tr>
+<th>Bus Id</th>
+<th>Bus Name</th>
+<th>Seat Id</th>
+<th>Seat Type</th>
+<th>Seat Place</th>
+<th>Final Price</th>
+<th>Discount Rate</th>
+<th>Slot</th>
+<th>Route</th>
+<th>Boarding Point</th>
+<th>Drop Point</th>
+</tr>
+</thead>
+<tbody>
+      @foreach (var record in BookingDetails.BookingSeats.Distinct())
+      {
+                                <tr>
+                                <td>@record.BusId</td>
+                                <td>@record.BusName</td>
+                                <td>@record.SeatId</td>
+                                <td>@record.SeatType</td>
+                                <td>@record.SeatPlace</td>
+                                <td>@record.SeatPrice</td>
+                                <td>@record.DiscountRate</td>
+                                <td>@BookingDetails.SelectedDate.ToString("dd-MM-yyyy HH:mm")</td>
+                                <td>@BookingDetails.Route.Start - @BookingDetails.Route.End</td>
+                                <td>@BookingDetails.BoardingPoint.Point</td>
+                                <td>@BookingDetails.DropPoint.Point</td>
+                                </tr>
+
+        Total += record.SeatPrice;
+      }
+
+
+</tbody>
+</table>
+</body>
+<p class = "subhead">Total Amount : @Total</p>
+
+<div class ="button-container">
+<button type="button" class="custom-btn" @onclick="Back">Back</button>
+<button type="button" class="custom-btn" @onclick="ConfirmBook">Confirm Booking</button>
+</div>
+<div class="popup" @ref="popup" style="display: @(ShowSuccessPopup ? "block" : "none");">
+    <div class="popup-content">
+        <h2>Booking Successful!</h2>
+        <p>Your booking has been confirmed.</p>
+        <button class="close-button" @onclick="ClosePopup">Close</button>
+    </div>
+</div>
+
+<div class="popup" @ref="popup" style="display: @(ShowFailurePopup ? "block" : "none");">
+    <div class="popup-content">
+        <h2>Booking was unsuccessful.</h2>
+        <p>Please try again.</p>
+        <button class="close-button" @onclick="ClosePopup">Retry</button>
+    </div>
+</div>
+
+<style>
+.button-container {
+  display: flex;
+  justify-content: space-between; 
+}
+.detail-table {
+  border-collapse: separate;
+  margin: auto auto; 
+  width: 50%; 
+  font-family: Arial, sans-serif; 
+  border-spacing: 0 5px; 
+}
+
+.detail-table tr { 
+  background-color: #e8f5e9; 
+  transition: background-color 0.3s ease; 
+}
+
+.detail-table tr:hover { 
+  background-color: #c8e6c9; 
+}
+
+.detail-table th,
+.detail-table td {
+  border: 1px solid #a5d6a7; 
+  padding: 10px; 
+  text-align: left; 
+  vertical-align: middle;
+}
+
+.detail-table th {
+  font-weight: bold;
+  background-color: #66bb6a; 
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 5px; 
+}
+
+.detail-table td {
+  color: #2e7d32; 
+  background-color: #ffffff;
+  border-radius: 5px; 
+  white-space: nowrap; 
+}
+
+.detail-table tr:nth-child(odd) td {
+  background-color: #f1f8e9;
+}
+
+.custom-btn {
+  background-color: #4CAF50;
+  color: white; 
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-btn:hover {
+  background-color: #3e8e41;
+}
+.head
+{
+background-color: #28a745; 
+color:#eef4f3;
+width: 95%;
+padding: 20px 20px;
+font-size: 25px;
+font-weight: bold;
+border-radius: 25px;
+text-align: center;
+}
+    .subhead{
+        background-color: #3e8e41;
+        color:#eef4f3;
+        font: bolder;
+        font-size: larger;
+        width: fit-content;
+        padding: 5px 5px;
+    }
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #28a745;
+    color:#eef4f3;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.close-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+}
+</style>
+
+@code
+{
+  private int Total = 0;
+  private ElementReference popup;
+  private bool ShowSuccessPopup = false, ShowFailurePopup = false;
+  private async Task Back()
+  {
+    BookingDetails.BookingSeats.Clear();
+    NavigationManager.NavigateTo("/ViewBus");
+  }
+  private async Task ConfirmBook()
+  {
+    var value = await BookingDetails.SendBookingDetails();
+    if (value)
+    {
+      ShowSuccessPopup = true;
+    }
+    else
+    {
+      ShowFailurePopup = true;
+    }
+  }
+
+
+  private void ClosePopup()
+  {
+    BookingDetails.BookingSeats.Clear();
+    SeatDetails.Seats.Clear();
+    NavigationManager.NavigateTo("/MainSection");
+  }
+}

@@ -1,0 +1,91 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Bus_FronEnd
+build_property.RootNamespace = Bus_FronEnd
+build_property.ProjectDir = C:\Users\prems\Documents\projects\Bus\Bus_FronEnd\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\prems\Documents\projects\Bus\Bus_FronEnd
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/BookingSection/BookingSection.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCb29raW5nU2VjdGlvblxCb29raW5nU2VjdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/BookingSection/BookSeats.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCb29raW5nU2VjdGlvblxCb29rU2VhdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/BookingSection/DiscountOffer.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCb29raW5nU2VjdGlvblxEaXNjb3VudE9mZmVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/BookingSection/RouteAndSlot.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCb29raW5nU2VjdGlvblxSb3V0ZUFuZFNsb3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/BookingSection/ViewBus.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCb29raW5nU2VjdGlvblxWaWV3QnVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/BookingSection/ViewSeats.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCb29raW5nU2VjdGlvblxWaWV3U2VhdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/CreateAccount.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDcmVhdGVBY2NvdW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/MainSection/BookingRecords.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNYWluU2VjdGlvblxCb29raW5nUmVjb3Jkcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/MainSection/MainSection.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNYWluU2VjdGlvblxNYWluU2VjdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/MainSection/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNYWluU2VjdGlvblxQcm9maWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Pages/MainSection/UpdateProfile.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNYWluU2VjdGlvblxVcGRhdGVQcm9maWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-028yy6mosw
+
+[C:/Users/prems/Documents/projects/Bus/Bus_FronEnd/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-eg0vx1opby

@@ -1,0 +1,232 @@
+@page "/RouteAndSlot"
+@using Details
+@using Table
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<body style="background-color:rgb(97, 231, 162);">
+    <center><h3 class="head">Select Travel Details</h3></center>
+    <div class="container">
+
+        <div class="left-section">
+
+
+            <p class="subhead"><b>Select Date</b></p>
+            <select class="custom-dropdown" @onchange="SetSelectedDate">
+                @foreach (var date in Dates)
+                {
+        <option value="@date">@date.ToString("dd-MM-yyyy")</option>
+                }
+            </select>
+
+            <p class="subhead"><b>Select Slots</b></p>
+            <select class="custom-dropdown" @onchange="SetSlots">
+                @foreach (var slot in Slots)
+                {
+        <option value="@slot">@slot.ToString(@"hh\:mm")</option>
+                }
+            </select>
+
+            <p class="subhead"><b>Select Route</b></p>
+            <select class="custom-dropdown" @onchange="SetBusId">
+                @foreach (var route in RouteDetails.Routes)
+                {
+        <option value="@System.Text.Json.JsonSerializer.Serialize(route)">
+                        @route.Start - @route.End
+        </option>
+                }
+            </select>
+
+            <p class="subhead"><b>Select BoardingPoint</b></p>
+            <select class="custom-dropdown" @onchange="SetBoardingPoint">
+                @foreach (var point in BoardingDetails.BoardingPoints.Where(c => c.RouteId == RouteId))
+                {
+    <option value="@System.Text.Json.JsonSerializer.Serialize(point)">@point.Point</option>
+                }
+            </select>
+
+            <p class="subhead"><b>Select DropPoint</b></p>
+            <select class="custom-dropdown" @onchange="SetDropPoint">
+                @foreach (var point in DropPointDetails.DropPoints.Where(c => c.RouteId == RouteId))
+                {
+        <option value="@System.Text.Json.JsonSerializer.Serialize(point)">@point.Point</option>
+                }
+            </select>
+        </div>
+
+
+        <div class="right-section">
+            <marquee><h3>You Selected</h3></marquee>
+            <p><b>Slot:</b> @BookingDetails.SelectedDate.ToString("dd-MM-yyyy") @SelectedSlot</p>
+            <p><b>Route:</b> @SelectedRoute</p>
+            <p><b>Boarding Point:</b> @BoardingPoint</p>
+            <p><b>Drop Point:</b> @DropPoint</p>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button type="button" class="custom-btn" @onclick="Back">Back</button>
+        <button type="button" class="custom-btn" @onclick="Proceed">Proceed</button>
+    </div>
+</body>
+
+<style>
+    .container {
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .left-section {
+        width: 40%;
+        height: fit-content;
+    }
+
+    .right-section {
+        width: 30%;
+        background-color: #28a745;
+        color: #eef4f3;
+        padding: 40px;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        position: sticky;
+        height: fit-content;
+
+    }
+
+    .custom-dropdown {
+        background-color: #28a745;
+        color: white;
+        padding: 10px;
+        border-radius: 10px; 
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 15px; 
+    }
+
+    .custom-dropdown:hover {
+        background-color: #218838;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .custom-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .custom-btn:hover {
+        background-color: #3e8e41;
+    }
+
+    .head {
+        background-color: #28a745;
+        color: #eef4f3;
+        padding: 20px;
+        font-size: 25px;
+        font-weight: bold;
+        border-radius: 25px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .subhead {
+        background-color: #3e8e41;
+        color: #eef4f3;
+        padding: 8px;
+        width:fit-content;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+</style>
+
+@code {
+    private List<TimeSpan> Slots = new List<TimeSpan>();
+    private List<DateTime> Dates = new List<DateTime>();
+    private string SelectedSlot;
+    private string SelectedRoute, BoardingPoint, DropPoint;
+    private int RouteId = 0;
+
+    protected override void OnInitialized()
+    {
+        var today = DateTime.Today;
+        for (var i = 0; i < 7; i++)
+        {
+            Dates.Add(today.AddDays(i));
+        }
+
+        Slots.Add(new TimeSpan(12, 0, 0));
+        Slots.Add(new TimeSpan(15, 0, 0));
+        Slots.Add(new TimeSpan(18, 0, 0));
+        Slots.Add(new TimeSpan(20, 0, 0));
+    }
+
+    private async Task SetSlots(ChangeEventArgs e)
+    {
+        if (TimeSpan.TryParse(e.Value.ToString(), out var selectedSlot))
+        {
+            SelectedSlot = selectedSlot.ToString(@"hh\:mm");
+            BookingDetails.SelectedDate = BookingDetails.SelectedDate.Date.Add(selectedSlot);
+        }
+    }
+
+    private async Task SetSelectedDate(ChangeEventArgs e)
+    {
+        if (DateTime.TryParse(e.Value.ToString(), out var selectedDate))
+        {
+            BookingDetails.SelectedDate = selectedDate;
+        }
+    }
+
+    private async Task SetBusId(ChangeEventArgs e)
+    {
+        var selectedRouteJson = e.Value.ToString();
+        var selectedRoute = System.Text.Json.JsonSerializer.Deserialize<RouteTable>(selectedRouteJson);
+        BookingDetails.Route = selectedRoute;
+        RouteId = selectedRoute.RouteId;
+        BookingDetails.BusId = selectedRoute.BusId;
+        SelectedRoute = $"{selectedRoute.Start}-{selectedRoute.End}";
+        BusDetails.GetBusDetails(selectedRoute.BusId);
+    }
+
+    private async Task SetBoardingPoint(ChangeEventArgs e)
+    {
+        var selectedBoardingPointJson = e.Value.ToString();
+        var selectedBoardingPoint = System.Text.Json.JsonSerializer.Deserialize<BoardingPointTable>(selectedBoardingPointJson);
+        BookingDetails.BoardingPoint = selectedBoardingPoint;
+        BoardingPoint = selectedBoardingPoint.Point;
+    }
+
+    private async Task SetDropPoint(ChangeEventArgs e)
+    {
+        var selectedDropPointJson = e.Value.ToString();
+        var selectDropPoint = System.Text.Json.JsonSerializer.Deserialize<DropPointTable>(selectedDropPointJson);
+        BookingDetails.DropPoint = selectDropPoint;
+        DropPoint = selectDropPoint.Point;
+    }
+
+    private async Task Proceed()
+    {
+        NavigationManager.NavigateTo("/ViewBus");
+    }
+
+    private async Task Back()
+    {
+        NavigationManager.NavigateTo("/BookingSection");
+    }
+}

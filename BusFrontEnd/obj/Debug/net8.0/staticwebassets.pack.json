@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\prems\\Documents\\projects\\Bus\\Bus_FronEnd\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Bus_FronEnd.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Bus_FronEnd.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\prems\\Documents\\projects\\Bus\\Bus_FronEnd\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\prems\\Documents\\projects\\Bus\\Bus_FronEnd\\wwwroot\\images\\RCB.jpg",
+      "PackagePath": "staticwebassets\\images\\RCB.jpg"
+    },
+    {
+      "Id": "C:\\Users\\prems\\Documents\\projects\\Bus\\Bus_FronEnd\\wwwroot\\style\\style.css",
+      "PackagePath": "staticwebassets\\style\\style.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Bus_FronEnd.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Bus_FronEnd.props",
+      "PackagePath": "build\\Bus_FronEnd.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Bus_FronEnd.props",
+      "PackagePath": "buildMultiTargeting\\Bus_FronEnd.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Bus_FronEnd.props",
+      "PackagePath": "buildTransitive\\Bus_FronEnd.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
