@@ -1,0 +1,25 @@
+GET http://localhost:5095/BusDetails
+###
+GET http://localhost:5095/BusDetails/KP1
+###
+
+###
+DELETE  http://localhost:5095/BusDetails/2
+
+###
+GET http://localhost:5095/Customer/supervonline/surya123
+    
+###
+POST http://localhost:5095/Customer/create_customer
+###
+PUT http://localhost:5095/Customer/Update_Customer
+###
+GET http://localhost:5095/Customer/Booking_Records/3
+###
+GET http://localhost:5095/Discount_Offer
+
+### 
+
+GET http://localhost:5095/DropPoint_Details
+###
+POST http://localhost:5095/Book_seats

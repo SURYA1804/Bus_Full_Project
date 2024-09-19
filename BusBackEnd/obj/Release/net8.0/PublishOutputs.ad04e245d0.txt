@@ -1,0 +1,15 @@
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\DotNet.exe
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\appsettings.Development.json
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\appsettings.json
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\DotNet.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\DotNet.runtimeconfig.json
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\DotNet.pdb
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\Microsoft.EntityFrameworkCore.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\Microsoft.OpenApi.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\MinimalApis.Extensions.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\MiniValidation.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\Npgsql.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\prems\Documents\projects\Bus\Bus-BackEnd\bin\Release\net8.0\publish\DotNet.deps.json
