@@ -40,7 +40,7 @@
                                 <td>@BookingDetails.DropPoint.Point</td>
                                 </tr>
 
-        Total += record.SeatPrice;
+        
       }
 
 
@@ -177,7 +177,7 @@ text-align: center;
 
 @code
 {
-  private int Total = 0;
+  private int Total = BookingDetails.BookingSeats.Sum(e => e.SeatPrice);
   private ElementReference popup;
   private bool ShowSuccessPopup = false, ShowFailurePopup = false;
   private async Task Back()
