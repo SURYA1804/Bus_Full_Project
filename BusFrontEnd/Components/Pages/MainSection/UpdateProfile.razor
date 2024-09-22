@@ -15,67 +15,67 @@
 
     @if (choice == "Name")
     {
-                    <form @onsubmit="HandleSubmit">
-                    <div class="form-group">
-                    <label for="name"><b>Name:</b></label>
-                    <input type="text" id="name" @bind-value="customer.Name" class="form-control" disabled="@formSubmitted">
-                    </div>
-                    <button type="submit" class="btn-primary" disabled="@formSubmitted">Update Name</button>
-                    </form>
+                              <form @onsubmit="HandleSubmit">
+                              <div class="form-group">
+                              <label for="name"><b>Name:</b></label>
+                              <input type="text" id="name" @bind-value="CustomerDetails.customer.Name" class="form-control" disabled="@formSubmitted">
+                              </div>
+                              <button type="submit" class="btn-primary" disabled="@formSubmitted">Update Name</button>
+                              </form>
     }
 
     @if (choice == "Email")
     {
-                    <form @onsubmit="HandleSubmit">
-                    <div class="form-group">
-                    <label for="Email"><b>Email:</b></label>
-                    <input type="email" id="email" @bind-value="customer.Email" class="form-control" disabled="@formSubmitted">
-                    </div>
-                    <button type="submit" class="btn-primary" disabled="@formSubmitted">Update Email</button>
-                    </form>
+                              <form @onsubmit="HandleSubmit">
+                              <div class="form-group">
+                              <label for="Email"><b>Email:</b></label>
+                              <input type="email" id="email" @bind-value="CustomerDetails.customer.Email" class="form-control" disabled="@formSubmitted">
+                              </div>
+                              <button type="submit" class="btn-primary" disabled="@formSubmitted">Update Email</button>
+                              </form>
     }
 
     @if (choice == "MobileNo")
     {
-                    <form @onsubmit="HandleSubmit"> 
-                    <div class="form-group">
-                    <label for="MobileNo"><b>MobileNo:</b></label>
-                    <input type="text" id="MobileNo" @bind-value="customer.MobileNo" class="form-control" disabled="@formSubmitted">
-                    </div>
-                    <button type="submit" class="btn-primary" disabled="@formSubmitted">Update MobileNo</button>
-                    </form>
+                              <form @onsubmit="HandleSubmit"> 
+                              <div class="form-group">
+                              <label for="MobileNo"><b>MobileNo:</b></label>
+                              <input type="text" id="MobileNo" @bind-value="CustomerDetails.customer.MobileNo" class="form-control" disabled="@formSubmitted">
+                              </div>
+                              <button type="submit" class="btn-primary" disabled="@formSubmitted">Update MobileNo</button>
+                              </form>
     }
 
     @if (choice == "Password" && !nomismatch)
     {
-                    <form @onsubmit="verify">
-                    <div class="form-group">
-                    <label for="LoginPassword"><b>Enter old Password:</b></label>
-                    <input type="password" id="LoginPassword" @bind-value="password" class="form-control" disabled="@nomismatch">
-                    </div>
-                    <button type="submit" class="btn-primary" disabled="@nomismatch">Enter</button>
-                    </form>
+                              <form @onsubmit="verify">
+                              <div class="form-group">
+                              <label for="LoginPassword"><b>Enter old Password:</b></label>
+                              <input type="password" id="Password" @bind-value="password" class="form-control" disabled="@nomismatch">
+                              </div>
+                              <button type="submit" class="btn-primary" disabled="@nomismatch">Enter</button>
+                              </form>
     }
 
     @if (mismatch)
     {
-                    <p class="error-message"><b>Incorrect old password. Please try again.</b></p>
+                              <p class="error-message"><b>Incorrect old password. Please try again.</b></p>
     }
 
     @if (nomismatch && !formSubmitted)
     {
-                    <form @onsubmit="HandleSubmit">
-                    <div class="form-group">
-                    <label for="LoginPassword"><b>Enter New Password:</b></label>
-                    <input type="password" id="LoginPassword" @bind-value="customer.LoginPassword" class="form-control" disabled="@formSubmitted">
-                    </div>
-                    <button type="submit" class="btn-primary" disabled="@formSubmitted">Set New Password</button>
-                    </form>
+                              <form @onsubmit="HandleSubmit">
+                              <div class="form-group">
+                              <label for="LoginPassword"><b>Enter New Password:</b></label>
+                              <input type="password" id="LoginPassword" @bind-value="CustomerDetails.customer.LoginPassword" class="form-control" disabled="@formSubmitted">
+                              </div>
+                              <button type="submit" class="btn-primary" disabled="@formSubmitted">Set New Password</button>
+                              </form>
     }
 
     @if (UpdateStatus)
     {
-                    <p class="success-message">Successfully Updated!</p>
+                              <p class="success-message">Successfully Updated!</p>
     }
 
 </div>
@@ -167,12 +167,7 @@
 @code {
   private string choice = "", password = "";
   private bool mismatch = false, nomismatch = false, UpdateStatus = false, formSubmitted = false;
-  private CustomerTable customer;
 
-  protected override async Task OnInitializedAsync()
-  {
-    customer = CustomerDetails.GetCustomerDetails();
-  }
 
   private void Name()
   {
@@ -205,13 +200,13 @@
   private async Task HandleSubmit()
   {
     formSubmitted = true;
-    UpdateStatus = await CustomerDetails.UpdateCustomerDetailsAsync(customer);
+    UpdateStatus = await CustomerDetails.UpdateCustomerDetailsAsync();
     choice = "";
   }
 
   private async Task verify()
   {
-    if (customer.LoginPassword != password)
+    if (CustomerDetails.customer.LoginPassword != password)
     {
       mismatch = true;
     }
