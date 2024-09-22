@@ -19,10 +19,7 @@ public static class CustomerDetails
         customer = response1.Value;
 
     }
-    public static CustomerTable GetCustomerDetails()
-    {
-        return customer;
-    }
+
     public static async Task<bool> CreateCustomerAsync(CustomerTable customer)
     {
         var json = JsonConvert.SerializeObject(customer);
