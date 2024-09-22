@@ -33,14 +33,14 @@ public static class CustomerDetails
         return response1.StatusCode <= 201;
 
     }
-    public static async Task<bool> UpdateCustomerDetailsAsync(CustomerTable customer)
+    public static async Task<bool> UpdateCustomerDetailsAsync()
     {
         var json = JsonConvert.SerializeObject(customer);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
-        HttpRequestMessage response = new HttpRequestMessage(HttpMethod.Put, $"{APIDetails.BaseAddress}/Customer/Update_Customer") { Content = content };
+        HttpResponseMessage response = await http.PutAsync($"{APIDetails.BaseAddress}/Customer/Update_Customer", content);
         string jsonResponse = await response.Content.ReadAsStringAsync();
-        var response1 = JsonConvert.DeserializeObject<APIResponse>(jsonResponse);
-        return response1.StatusCode <= 200;
+        var ApiResponse = JsonConvert.DeserializeObject<APIResponse>(jsonResponse);
+        return ApiResponse.StatusCode <= 200;
 
     }
     public static async Task CustomerBookingRecords()
