@@ -106,7 +106,7 @@ text-align: center;
   private CustomerTable customer;
   protected override async Task OnInitializedAsync()
   {
-    customer = CustomerDetails.GetCustomerDetails();
+    customer = CustomerDetails.customer;
   }
   private async Task Back()
   {
