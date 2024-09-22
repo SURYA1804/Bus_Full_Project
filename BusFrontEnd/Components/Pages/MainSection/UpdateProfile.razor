@@ -67,7 +67,7 @@
                     <form @onsubmit="HandleSubmit">
                     <div class="form-group">
                     <label for="LoginPassword"><b>Enter New Password:</b></label>
-                    <input type="password" id="LoginPassword" @bind-value="password" class="form-control" disabled="@formSubmitted">
+                    <input type="password" id="LoginPassword" @bind-value="customer.LoginPassword" class="form-control" disabled="@formSubmitted">
                     </div>
                     <button type="submit" class="btn-primary" disabled="@formSubmitted">Set New Password</button>
                     </form>
