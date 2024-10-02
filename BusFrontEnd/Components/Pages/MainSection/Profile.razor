@@ -1,0 +1,129 @@
+@page "/Profile"
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+@using Details
+@using Table
+
+<body style="background-color:rgb(97, 231, 162);">
+<div class="LogoAndHeadContainer">
+<img class ="logo-section" src="images/logo.jpg" alt="Logo" style="width:5%;height:5%; border-radius:25px ;">
+<p class="head-section">Profile</p>
+</div>
+<br><br>
+<div>
+<table class="detail-table">
+<tbody>
+<tr>
+<td class="label">Name</td>
+<td>@customer.Name</td>
+</tr>
+<tr>
+<td class="label">Mobile No</td>
+<td>@customer.MobileNo</td>
+</tr>
+<tr>
+<td class="label">Email</td>
+<td>@customer.Email</td>
+</tr>
+<tr>
+<td class="label">Joined Date</td>
+<td>@customer.Date.ToString("dd-MM-yyyy")</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+    <button type="button" class="btn custom-btn" @onclick="Back">Back</button><br><br>
+</div>
+</body>
+<style>
+.detail-table {
+  border-collapse: separate;
+  margin: 20px auto; 
+  width: 60%; 
+  font-family: Arial, sans-serif; 
+  border-spacing: 0 8px; 
+}
+
+.detail-table tr { 
+  background-color: #e8f5e9; 
+  transition: background-color 0.3s ease; 
+}
+
+.detail-table tr:hover { 
+  background-color: #c8e6c9; 
+}
+
+.detail-table th,
+.detail-table td {
+  border: 1px solid #a5d6a7; 
+  padding: 15px 20px; 
+  text-align: left; 
+}
+
+.detail-table th {
+  font-weight: bold;
+  background-color: #66bb6a; 
+  color: #ffffff;
+  text-transform: 
+  letter-spacing: 0.5px;
+  border-radius: 5px; 
+}
+
+.detail-table td {
+  color: #2e7d32; 
+  background-color: #ffffff;
+  border-radius: 5px; 
+}
+
+.detail-table tr:nth-child(odd) td {
+  background-color: #f1f8e9;
+}
+
+
+.custom-btn {
+  background-color: #4CAF50;
+  color: white; 
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-btn:hover {
+  background-color: #3e8e41;
+}
+    .LogoAndHeadContainer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap:5px;
+    }
+    .logo-section {
+        width: fit-content;
+        height: fit-content;
+
+    }
+.head-section
+{     
+background-color: #28a745; 
+color:#eef4f3;
+width: 95%;
+padding: 20px 20px;
+font-size: 25px;
+font-weight: bold;
+border-radius: 25px;
+text-align: center;
+}
+</style>
+@code
+{
+  private CustomerTable customer;
+  protected override async Task OnInitializedAsync()
+  {
+    customer = CustomerDetails.customer;
+  }
+  private async Task Back()
+  {
+    NavigationManager.NavigateTo("/MainSection");
+  }
+}

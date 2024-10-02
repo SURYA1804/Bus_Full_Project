@@ -1,0 +1,238 @@
+@page "/UpdateProfile"
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+@using Details
+@using Table
+
+<body style="background-color:rgb(97, 231, 162);">
+<div class="LogoAndHeadContainer">
+<img class ="logo-section" src="images/logo.jpg" alt="Logo" style="width:5%;height:5%; border-radius:25px ;">
+<p class="head-section">Update Profile</p>
+</div>
+<div class="update-profile-container">
+<button class="btn-update" @onclick="Name">Update Name</button><br><br>
+<button class="btn-update" @onclick="MobileNo">Update Mobile Number</button><br><br>
+<button class="btn-update" @onclick="Email">Update Email</button><br><br>
+<button class="btn-update" @onclick="Password">Update Password</button><br><br>
+<button class="btn-update" @onclick="Back">Back</button><br><br>
+
+    @if (choice == "Name")
+    {
+                                  <form @onsubmit="HandleSubmit">
+                                  <div class="form-group">
+                                  <label for="name"><b>Name:</b></label>
+                                  <input type="text" id="name" @bind-value="CustomerDetails.customer.Name" class="form-control" disabled="@formSubmitted">
+                                  </div>
+                                  <button type="submit" class="btn-primary" disabled="@formSubmitted">Update Name</button>
+                                  </form>
+    }
+
+    @if (choice == "Email")
+    {
+                                  <form @onsubmit="HandleSubmit">
+                                  <div class="form-group">
+                                  <label for="Email"><b>Email:</b></label>
+                                  <input type="email" id="email" @bind-value="CustomerDetails.customer.Email" class="form-control" disabled="@formSubmitted">
+                                  </div>
+                                  <button type="submit" class="btn-primary" disabled="@formSubmitted">Update Email</button>
+                                  </form>
+    }
+
+    @if (choice == "MobileNo")
+    {
+                                  <form @onsubmit="HandleSubmit"> 
+                                  <div class="form-group">
+                                  <label for="MobileNo"><b>MobileNo:</b></label>
+                                  <input type="text" id="MobileNo" @bind-value="CustomerDetails.customer.MobileNo" class="form-control" disabled="@formSubmitted">
+                                  </div>
+                                  <button type="submit" class="btn-primary" disabled="@formSubmitted">Update MobileNo</button>
+                                  </form>
+    }
+
+    @if (choice == "Password" && !nomismatch)
+    {
+                                  <form @onsubmit="verify">
+                                  <div class="form-group">
+                                  <label for="LoginPassword"><b>Enter old Password:</b></label>
+                                  <input type="password" id="Password" @bind-value="password" class="form-control" disabled="@nomismatch">
+                                  </div>
+                                  <button type="submit" class="btn-primary" disabled="@nomismatch">Enter</button>
+                                  </form>
+    }
+
+    @if (mismatch)
+    {
+                                  <p class="error-message"><b>Incorrect old password. Please try again.</b></p>
+    }
+
+    @if (nomismatch && !formSubmitted)
+    {
+                                  <form @onsubmit="HandleSubmit">
+                                  <div class="form-group">
+                                  <label for="LoginPassword"><b>Enter New Password:</b></label>
+                                  <input type="password" id="LoginPassword" @bind-value="CustomerDetails.customer.LoginPassword" class="form-control" disabled="@formSubmitted">
+                                  </div>
+                                  <button type="submit" class="btn-primary" disabled="@formSubmitted">Set New Password</button>
+                                  </form>
+    }
+
+    @if (UpdateStatus)
+    {
+                                  <p class="success-message">Successfully Updated!</p>
+    }
+
+</div>
+</body>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+  }
+
+  .update-profile-container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .btn-update {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  .btn-primary {
+    background-color: #007bff; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .success-message {
+    color: green;
+    font-weight: bold;
+  }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
+    .LogoAndHeadContainer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap:5px;
+    }
+    .logo-section {
+        width: fit-content;
+        height: fit-content;
+
+    }
+.head-section
+{     
+background-color: #28a745; 
+color:#eef4f3;
+width: 95%;
+padding: 20px 20px;
+font-size: 25px;
+font-weight: bold;
+border-radius: 25px;
+text-align: center;
+}
+</style>
+@code {
+  private string choice = "", password = "";
+  private bool mismatch = false, nomismatch = false, UpdateStatus = false, formSubmitted = false;
+
+
+  private void Name()
+  {
+    choice = "Name";
+    UpdateStatus = false;
+    formSubmitted = false;
+  }
+  private void MobileNo()
+  {
+    choice = "MobileNo";
+    UpdateStatus = false;
+    formSubmitted = false;
+
+  }
+  private void Email()
+  {
+    choice = "Email";
+    UpdateStatus = false;
+    formSubmitted = false;
+
+  }
+  private void Password()
+  {
+    choice = "Password";
+    UpdateStatus = false;
+    formSubmitted = false;
+
+  }
+
+  private async Task HandleSubmit()
+  {
+    formSubmitted = true;
+    UpdateStatus = await CustomerDetails.UpdateCustomerDetailsAsync();
+    choice = "";
+  }
+
+  private async Task verify()
+  {
+    if (CustomerDetails.customer.LoginPassword != password)
+    {
+      mismatch = true;
+    }
+    else
+    {
+      mismatch = false;
+      nomismatch = true;
+    }
+  }
+
+  private void Back()
+  {
+    NavigationManager.NavigateTo("/MainSection");
+  }
+}
